@@ -23,7 +23,11 @@ module.exports = {
             watch: true,
             exclude: ['style.css']
         }),
-        new ExtractTextPlugin('css/[name].css')
+        new ExtractTextPlugin('css/[name].css'),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        })
     ],
     module: {
         rules: [{
@@ -49,6 +53,9 @@ module.exports = {
                     loader: 'css-loader'
                 }]
             })
+        }, {
+            test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+            loader: 'url-loader'
         }, {
             test: /\.hbs$/,
             loader: 'handlebars-loader'
