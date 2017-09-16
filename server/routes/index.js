@@ -5,7 +5,7 @@ var common = require('../common');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   common.render(res, 'index', {
-    title: 'Express'
+    title: '스케줄러'
   });
 });
 

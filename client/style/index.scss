@@ -1,3 +1,9 @@
-* {
-  color: blue;
+.node-container {
+  padding: 30px;
+
+  .node-title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
 }
