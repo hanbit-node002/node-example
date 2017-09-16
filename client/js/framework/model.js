@@ -19,6 +19,13 @@ function update() {
     }
 
     $('#calendar').trigger('node.update');
+    $.ajax({
+        url: '/calendar/save',
+        method: 'POST',
+        data: {
+            events: JSON.stringify(model.events)
+        }
+    });
 
     model.oldEvents = JSON.parse(JSON.stringify(model.events));
 }
