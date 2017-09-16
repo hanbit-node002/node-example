@@ -9,7 +9,7 @@ function doAction(actionId, option) {
         }
     }
 
-    $('#calendar').trigger('node.update');
+    model.update();
 }
 
 module.exports = {

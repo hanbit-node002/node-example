@@ -5,9 +5,8 @@ require('fullcalendar');
 
 require('../style/index.scss');
 
-var dispatcher = require('./framework/dispatcher');
 var model = require('./framework/model');
-
+var dispatcher = require('./framework/dispatcher');
 dispatcher.setModel(model);
 
 $('#calendar').fullCalendar({
