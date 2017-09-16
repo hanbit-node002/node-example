@@ -29,13 +29,9 @@ $('#calendar').on('node.update', function() {
 
 function updateCalendar() {
     $('#calendar').fullCalendar('removeEvents');
-    $('#calendar').fullCalendar('addEventSource', model.events);
+    $('#calendar').fullCalendar('addEventSource', model.data.events);
     $('#calendar').fullCalendar('render');
 }
 
-
-
-
-
-
+model.init();
 

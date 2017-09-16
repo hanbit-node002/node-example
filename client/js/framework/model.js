@@ -1,17 +1,30 @@
-var oldEvents = [];
-var events = [];
+var model = {
+    oldEvents: [],
+    events: []
+};
+
+function init() {
+    $.ajax({
+        url: '/calendar/get',
+        success: function(result) {
+            model.events = result;
+            update();
+        }
+    });
+}
 
 function update() {
-    if (JSON.stringify(oldEvents) === JSON.stringify(events)) {
+    if (JSON.stringify(model.oldEvents) === JSON.stringify(model.events)) {
         return;
     }
 
     $('#calendar').trigger('node.update');
 
-    oldEvents = JSON.parse(JSON.stringify(events));
+    model.oldEvents = JSON.parse(JSON.stringify(model.events));
 }
 
 module.exports = {
-    events: events,
+    data: model,
+    init: init,
     update: update
 };

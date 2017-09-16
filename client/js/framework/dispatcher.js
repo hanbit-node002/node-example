@@ -4,7 +4,7 @@ var model = {};
 function doAction(actionId, option) {
     switch (actionId) {
         case 'addEvent': {
-            actions.addEvent(model, option.date, option.title);
+            actions.addEvent(model.data, option.date, option.title);
             break;
         }
     }
