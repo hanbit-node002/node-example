@@ -5,44 +5,32 @@ require('fullcalendar');
 
 require('../style/index.scss');
 
+var dispatcher = require('./framework/dispatcher');
+var model = require('./framework/model');
+
+dispatcher.setModel(model);
+
 $('#calendar').fullCalendar({
-    height: '100%',
     header: {
         left: 'prev,next,today',
         center: 'title',
         right: 'month,agendaWeek,agendaDay,listWeek'
     },
     dayClick: function(date, jsEvent, view) {
-        doAction('addEvent', {
+        dispatcher.doAction('addEvent', {
             title: '새 일정',
             date: date
         });
     }
 });
 
-function doAction(actionId, option) {
-    switch (actionId) {
-        case 'addEvent': {
-            addEvent(option.date, option.title);
-            break;
-        }
-    }
-
+$('#calendar').on('node.update', function() {
     updateCalendar();
-}
-
-function addEvent(date, title) {
-    events.push({
-        title: title,
-        start: date.format()
-    });
-}
-
-var events = [];
+});
 
 function updateCalendar() {
     $('#calendar').fullCalendar('removeEvents');
-    $('#calendar').fullCalendar('addEventSource', events);
+    $('#calendar').fullCalendar('addEventSource', model.events);
     $('#calendar').fullCalendar('render');
 }
 
